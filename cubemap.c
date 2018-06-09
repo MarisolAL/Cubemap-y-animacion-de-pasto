@@ -235,7 +235,9 @@ void myReshape(int width, int height)
 	glTranslated(0.0, 0.0, -3.6);
 }
 
-
+/**
+ * Metodo main
+ */
 int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
