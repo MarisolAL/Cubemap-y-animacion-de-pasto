@@ -11,7 +11,8 @@
 
 int tiempoActual, tiempoAnterior;
 double delta;
-static int x_i = 100;
+//static int x_i = 100;
+int pastos[] = {100,150,200};
 static GLfloat b= 300;
 static GLfloat a = 100*1.5;
 static int lim_sup = 100*1.5;
@@ -23,7 +24,7 @@ static float z_pos = -0.1;
 void init() {
 	glClearColor(1.0, 1.0, 1.0, 0.0);
 	glColor3f(0.0, 0.0, 0.0);
-	glMatrixMode(GL_PROJECTION);
+	//glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluOrtho2D(0, 480, 0, 640);
 	//glClear(GL_COLOR_BUFFER_BIT);
@@ -58,67 +59,30 @@ void animacionFrames(){
 
 void display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	 glPushMatrix();
-	glColor3f(0.8,1.0,0.4);
-	glTranslatef(x_pos, y_pos, z_pos);
-	GLfloat c = sqrt((x_i - a)*(x_i - a) + b*b); //Directriz de la parabola
-	//int lim_sup = x_i + (x_i/2) + tiempoActual/80;
+	glColor3f(0,0.4,0);
 	GLfloat y;
-	float incremento = (lim_sup-x_i)/32;
-	glBegin(GL_LINE_STRIP);
-	for(GLfloat x = x_i; x <= lim_sup; x+=incremento) {
-		y = ((x - a)*(x - a) + b*b - c*c)/(2*(b-c));
-		glVertex3f(x, y, z_pos);
 
-	}
-	glEnd();
-	/**
-	glColor3f(0.8,1.0,0.4);
-	glTranslatef(x_pos, y_pos, z_pos);
-	glClear(GL_COLOR_BUFFER_BIT);
+		glPushMatrix();
+		glTranslatef(x_pos, y_pos, z_pos);
+		int x_i = pastos[0];
+		GLfloat c = sqrt((x_i - a)*(x_i - a) + b*b); //Directriz de la parabola
 
-	GLfloat a = x_i*1.5; // Coordenada x de foco
-	GLfloat b = 300; //Coordenada y del foco
-	GLfloat c = sqrt((x_i - a)*(x_i - a) + b*b); //Directriz de la parabola
-	int lim_sup = x_i + (x_i/2);
-	GLfloat y;
-	glBegin(GL_POINTS);
-	for(GLfloat x = x_i; x <= lim_sup; x+=0.05) {
-		y = ((x - a)*(x - a) + b*b - c*c)/(2*(b-c));
-		glVertex3f(x, y, z_pos);
-	}
-	glEnd();
-	b = b - 100;
-	lim_sup = lim_sup + 10;
-	c = sqrt((x_i - a)*(x_i - a) + b*b);
-	glBegin(GL_POINTS);
-		for(GLfloat x = x_i; x <= lim_sup; x+=0.05) {
+		float incremento = (lim_sup-x_i)/32;
+		glBegin(GL_LINE_STRIP);
+		for(GLfloat x = x_i; x <= lim_sup; x+=incremento) {
 			y = ((x - a)*(x - a) + b*b - c*c)/(2*(b-c));
 			glVertex3f(x, y, z_pos);
+
 		}
-		glEnd();*/
+		glEnd();
+		glutSolidSphere(1, 100, 50);
+		glPopMatrix();
+		glutSwapBuffers();
 
-	/**
-	GLfloat verticeY = 500;
-	GLfloat verticeX = 100;
-	GLfloat y = 0;
-	int p = 5;
-	int h = 5 + 4*p;
-	int lim_sup = h + p;
-	int altura_pasto = 5;
-	int inicio = h- 15*p;
-	glTranslatef(x_pos, y_pos, z_pos);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glBegin(GL_POINTS);
-	for(GLfloat x = inicio; x <= lim_sup; x+=0.05) {
-		y = -((x - h)*(x - h) + (h*h))/(4*p);
-		glVertex3f(verticeX + x, verticeY + y, z_pos);
-	}
-	glEnd();*/
 
-	//glFlush();
-	glPopMatrix();
-	glutSwapBuffers();
+
+
+
 }
 
 void animar(){
