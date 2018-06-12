@@ -15,7 +15,7 @@ static int x_i = 100;
 int pastos[] = {50,150,200};
 static GLfloat b= 2;
 static GLfloat a = 2*1.5;
-static float lim_sup = 1;
+static float lim_sup = 1.5;
 static float x_pos = 0;
 static float y_pos = 0;
 static float z_pos = 0;
@@ -66,8 +66,20 @@ void display() {
 	int x_i = -2;
 	a = x_i+ 2;
 	c = sqrt((x_i - a)*(x_i - a) + b*b); //Directriz de la parabola
-	incremento = (lim_sup-x_i)/32;
 	glLineWidth(1.5);
+	float limite = lim_sup + x_i;
+	glBegin(GL_LINE_STRIP);
+	for(GLfloat x = x_i; x <= limite; x+=0.1) {
+		y = ((x - a)*(x - a) + b*b - c*c)/(2*(b-c));
+		glVertex3f(x, y, z_pos);
+
+	}
+	glEnd();
+
+	x_i = 0;
+	a = x_i+ 2;
+	c = sqrt((x_i - a)*(x_i - a) + b*b); //Directriz de la parabola
+	limite = lim_sup + x_i;
 	glBegin(GL_LINE_STRIP);
 	for(GLfloat x = x_i; x <= lim_sup; x+=0.1) {
 		y = ((x - a)*(x - a) + b*b - c*c)/(2*(b-c));
@@ -75,7 +87,13 @@ void display() {
 
 	}
 	glEnd();
-	printf("lim_sup %lf\n",lim_sup);
+
+	glBegin(GL_LINE_STRIP);
+	  glVertex3f(0.0f, 0.0f, 0.0f);  // V0
+	  glVertex3f(50.0f, 50.0f, 0.0f);  // V1
+	  glVertex3f(50.0f, 100.0f, 0.0f);  // V2
+	glEnd();
+
 	glPopMatrix();
 	glutSwapBuffers();
 }
