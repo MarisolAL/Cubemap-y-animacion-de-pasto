@@ -62,22 +62,22 @@ void display() {
 	glColor3f(0,0.4,0);
 	GLfloat y;
 
-		glPushMatrix();
-		glTranslatef(x_pos, y_pos, z_pos);
-		int x_i = pastos[0];
-		GLfloat c = sqrt((x_i - a)*(x_i - a) + b*b); //Directriz de la parabola
+	glPushMatrix();
+	glTranslatef(x_pos, y_pos, z_pos);
+	int x_i = pastos[0];
+	GLfloat c = sqrt((x_i - a)*(x_i - a) + b*b); //Directriz de la parabola
 
-		float incremento = (lim_sup-x_i)/32;
-		glBegin(GL_LINE_STRIP);
-		for(GLfloat x = x_i; x <= lim_sup; x+=incremento) {
-			y = ((x - a)*(x - a) + b*b - c*c)/(2*(b-c));
-			glVertex3f(x, y, z_pos);
+	float incremento = (lim_sup-x_i)/32;
+	glBegin(GL_LINE_STRIP);
+	for(GLfloat x = x_i; x <= lim_sup; x+=incremento) {
+		y = ((x - a)*(x - a) + b*b - c*c)/(2*(b-c));
+		glVertex3f(x, y, z_pos);
 
-		}
-		glEnd();
-		glutSolidSphere(1, 100, 50);
-		glPopMatrix();
-		glutSwapBuffers();
+	}
+	glEnd();
+	glutSolidSphere(1, 100, 50);
+	glPopMatrix();
+	glutSwapBuffers();
 
 
 

@@ -12,7 +12,7 @@
 int tiempoActual, tiempoAnterior;
 double delta;
 //static int x_i = 100;
-int pastos[] = {50,150,200};
+
 static GLfloat b= 2;
 static float lim_sup = 1.5;
 static float x_pos = 0;
@@ -82,6 +82,8 @@ void display() {
 
 	glPopMatrix();
 	glutSwapBuffers();
+
+
 }
 
 
