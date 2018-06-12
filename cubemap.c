@@ -155,6 +155,7 @@ void myDisplay(void)
 	glTexCoord2f(0,0); glVertex3f(-D,-D,+D);
 	glTexCoord2f(1,0); glVertex3f(+D,-D,+D);
 	glEnd();
+
 	glPopMatrix();
 	glFlush();
 	glDisable(GL_TEXTURE_2D);
